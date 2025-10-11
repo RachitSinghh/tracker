@@ -1,7 +1,17 @@
-import { useState } from 'react';
-import { Briefcase, CheckCircle2, TrendingUp, Clock, LogIn } from 'lucide-react';
-import { LoginForm } from './LoginForm';
-import { SignUpForm } from './SignUpForm';
+import { useState } from "react";
+import {
+  Briefcase,
+  CheckCircle2,
+  TrendingUp,
+  Clock,
+  LogIn,
+} from "lucide-react";
+import { LoginForm } from "./LoginForm";
+import { SignUpForm } from "./SignUpForm";
+// import { motion } from "framer-motion";
+
+import { PointerHighlight } from "./ui/pointer-highlight";
+
 
 export function LandingPage() {
   const [showLogin, setShowLogin] = useState(false);
@@ -12,9 +22,6 @@ export function LandingPage() {
       <nav className="border-b border-zinc-800/50 backdrop-blur-sm bg-black/30">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {/* <div className="p-2 bg-blue-600/20 rounded-lg">
-              <Briefcase className="text-blue-400" size={24} />
-            </div> */}
             <span className="text-3xl italic font-bold">Tracker</span>
           </div>
           <div className="flex items-center gap-3">
@@ -39,14 +46,21 @@ export function LandingPage() {
           <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6">
             Track Job Applications
             <br />
-            <span className="bg-gradient-to-r italic from-blue-400 to-cyan-400 bg-clip-text text-transparent u">
-              Hassle-Free
+            <span className="relative inline-block italic">
+            <PointerHighlight>
+
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Hassle-Free
+              </span>
+            </PointerHighlight>
+             
+             
             </span>
           </h1>
 
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-            Stay organized, motivated, and in control of your job search.
-            Track every application, celebrate wins, and learn from rejections.
+            Stay organized, motivated, and in control of your job search. Track
+            every application, celebrate wins, and learn from rejections.
           </p>
 
           <div className="flex items-center justify-center gap-4">
@@ -73,13 +87,31 @@ export function LandingPage() {
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-500"></div>
             </div>
-            <span className="text-sm text-zinc-400">Join thousands tracking their career journey</span>
+            <span className="text-sm text-zinc-400">
+              Join thousands tracking their career journey
+            </span>
           </div>
         </div>
       </main>
 
-      {showLogin && <LoginForm onClose={() => setShowLogin(false)} onSwitchToSignUp={() => { setShowLogin(false); setShowSignUp(true); }} />}
-      {showSignUp && <SignUpForm onClose={() => setShowSignUp(false)} onSwitchToLogin={() => { setShowSignUp(false); setShowLogin(true); }} />}
+      {showLogin && (
+        <LoginForm
+          onClose={() => setShowLogin(false)}
+          onSwitchToSignUp={() => {
+            setShowLogin(false);
+            setShowSignUp(true);
+          }}
+        />
+      )}
+      {showSignUp && (
+        <SignUpForm
+          onClose={() => setShowSignUp(false)}
+          onSwitchToLogin={() => {
+            setShowSignUp(false);
+            setShowLogin(true);
+          }}
+        />
+      )}
     </div>
   );
 }
