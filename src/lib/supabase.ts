@@ -14,6 +14,7 @@ export interface JobApplication {
   response_date?: string;
   job_url?: string;
   reason?: string;
+  user_id?: string;
   created_at: string;
   updated_at: string;
 }

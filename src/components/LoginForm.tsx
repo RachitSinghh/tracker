@@ -35,8 +35,20 @@ export function LoginForm({ onClose, onSwitchToSignUp }: LoginFormProps) {
     const { error: signInError } = await signIn(email, password);
 
     if (signInError) {
-      setError('Invalid email or password');
+      console.log('Login error:', signInError);
+      
+      if (signInError.message?.includes('Email not confirmed')) {
+        setError('Please check your email and confirm your account, or contact support to activate your account.');
+      } else if (signInError.message?.includes('Invalid login credentials')) {
+        setError('Invalid email or password. Please check and try again.');
+      } else {
+        setError(signInError.message || 'Login failed. Please try again.');
+      }
       setLoading(false);
+    } else {
+      // Login successful - close modal
+      console.log('Login successful');
+      onClose();
     }
   };
 

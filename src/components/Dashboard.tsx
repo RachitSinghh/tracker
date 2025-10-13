@@ -23,6 +23,7 @@ export function Dashboard() {
       const { data, error } = await supabase
         .from('job_applications')
         .select('*')
+        .eq('user_id', user?.id)
         .order('apply_date', { ascending: false });
 
       if (error) throw error;
